@@ -7,20 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
       font-family: 'Roboto Mono', monospace;
-      background-color: #0d0d0d;
-      color: #ff00ff;
+      background-color: #000;
+      color: #0f0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,27 +20,20 @@
       overflow: hidden;
       position: relative;
     }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      position: relative;
-      color: #ff00ff;
-      animation: glitch 1s infinite;
+    /* Matrix Rain Canvas Background */
+    #matrix {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      background: #000;
     }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-      color: #ff99ff;
-    }
-
-    /* Container Styles */
+    /* Content Over Background */
     .container {
-      background-color: rgba(20, 20, 20, 0.95);
+      background-color: rgba(0, 0, 0, 0.95);
       padding: 40px;
       border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+      box-shadow: 0 0 20px #0f0;
       max-width: 500px;
       width: 100%;
       text-align: center;
@@ -56,12 +41,17 @@
       z-index: 1;
       transition: transform 0.3s;
     }
-
-    /* Input and Button Styles */
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #0f0;
+      animation: glitch 1s infinite;
+    }
+    p { font-size: 1.2em; margin-bottom: 20px; color: #0f0; }
     input {
-      background-color: #1a1a1a;
-      color: #ff00ff;
-      border: 2px solid #ff00ff;
+      background-color: #000;
+      color: #0f0;
+      border: 2px solid #0f0;
       border-radius: 5px;
       padding: 12px;
       font-size: 1em;
@@ -69,16 +59,10 @@
       margin-bottom: 20px;
       transition: border-color 0.3s, transform 0.2s;
     }
-
-    input:focus {
-      border-color: #ff66ff;
-      outline: none;
-      transform: scale(1.02);
-    }
-
+    input:focus { border-color: #0f0; outline: none; transform: scale(1.02); }
     button {
-      background-color: #ff00ff;
-      color: #0d0d0d;
+      background-color: #0f0;
+      color: #000;
       padding: 12px 25px;
       font-size: 1em;
       border: none;
@@ -87,85 +71,23 @@
       transition: background-color 0.3s, transform 0.2s;
       width: 60%;
       margin-top: 10px;
-      position: relative;
-      overflow: hidden;
     }
-
-    button:hover {
-      background-color: #ff66ff;
-      transform: translateY(-2px);
-    }
-
-    /* Glitch Effect */
+    button:hover { background-color: #0c0; transform: translateY(-2px); }
     @keyframes glitch {
-      0% {
-        text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
-      }
-      20% {
-        text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff;
-      }
-      40% {
-        text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff;
-      }
-      60% {
-        text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff;
-      }
-      80% {
-        text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff;
-      }
-      100% {
-        text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff;
-      }
+      0% { text-shadow: 2px 2px #0f0, -2px -2px #003300; }
+      20% { text-shadow: -2px -2px #0f0, 2px 2px #003300; }
+      40% { text-shadow: 2px -2px #0f0, -2px 2px #003300; }
+      60% { text-shadow: -2px 2px #0f0, 2px -2px #003300; }
+      80% { text-shadow: 2px 2px #0f0, -2px -2px #003300; }
+      100% { text-shadow: -2px -2px #0f0, 2px 2px #003300; }
     }
-
-    /* Nebula-Like Background */
-    .nebula-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 30%, #2b1055, transparent 25%), 
-                  radial-gradient(circle at 70% 70%, #7597ff, transparent 30%);
-      opacity: 0.3;
-      animation: nebulaShift 30s ease-in-out infinite;
-      z-index: 0;
-    }
-
-    @keyframes nebulaShift {
-      0% {
-        transform: scale(1) translate(0, 0);
-      }
-      50% {
-        transform: scale(1.05) translate(20px, -20px);
-      }
-      100% {
-        transform: scale(1) translate(0, 0);
-      }
-    }
-
-    /* Trivia Quiz Styles */
-    .quiz-container {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .question {
-      font-size: 1.3em;
-      margin-bottom: 15px;
-      color: #ff66ff;
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
+    .quiz-container { display: none; margin-top: 20px; }
+    .question { font-size: 1.3em; margin-bottom: 15px; color: #0f0; }
+    .options { display: flex; flex-direction: column; align-items: center; }
     .option {
-      background-color: #1a1a1a;
-      color: #ff00ff;
-      border: 2px solid #ff00ff;
+      background-color: #000;
+      color: #0f0;
+      border: 2px solid #0f0;
       border-radius: 5px;
       padding: 10px 20px;
       margin: 5px 0;
@@ -174,145 +96,45 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
     }
-
-    .option:hover {
-      background-color: #ff66ff;
-      transform: scale(1.05);
-      color: #0d0d0d;
-    }
-
-    /* Raffle Styles */
-    .raffle-container {
-      display: none;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .raffle-number {
-      font-size: 4em;
-      color: #ff66ff;
-      margin-bottom: 20px;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .raffle-message {
-      font-size: 1.5em;
-      color: #00ffff;
-    }
-
-    /* Prize Details Styles */
-    .prize-container {
-      display: none;
-      margin-top: 20px;
-      text-align: center;
-      animation: pulse 2s infinite;
-    }
-
+    .option:hover { background-color: #0c0; transform: scale(1.05); color: #000; }
+    .raffle-container { display: none; margin-top: 20px; text-align: center; }
+    .raffle-number { font-size: 4em; color: #0f0; margin-bottom: 20px; animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .raffle-message { font-size: 1.5em; color: #0f0; }
+    .prize-container { display: none; margin-top: 20px; text-align: center; animation: pulse 2s infinite; }
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 10px #ff00ff;
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px #ff66ff;
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px #ff00ff;
-      }
+      0% { transform: scale(1); box-shadow: 0 0 10px #0f0; }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px #0c0; }
+      100% { transform: scale(1); box-shadow: 0 0 10px #0f0; }
     }
-
     .prize-container h1 {
       font-size: 2em;
       margin-bottom: 15px;
-      animation: glitch 1s infinite;
+      animation: glitch 1s infinite, epicPulse 2s infinite;
+      color: #ccff00;
+      text-shadow: 0 0 20px #ccff00, 0 0 30px #99cc00;
     }
-
-    .prize-details {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #ff99ff;
-      display: none; /* Hidden initially */
+    @keyframes epicPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
     }
-
-    .prize-details a {
-      color: #ff66ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .prize-details a:hover {
-      text-decoration: underline;
-    }
-
-    /* Button Specific Styles */
-    .hidden {
-      display: none;
-    }
-
-    /* Confetti Styles */
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #ff00ff;
-      opacity: 0.8;
-      transform: rotate(45deg);
-      animation: confetti-fall 3s forwards;
-    }
-
-    @keyframes confetti-fall {
-      0% {
-        top: -10%;
-        left: calc(50% - 5px);
-        opacity: 1;
-        transform: rotate(45deg) scale(1);
-      }
-      100% {
-        top: 100%;
-        left: calc(50% + 100px);
-        opacity: 0;
-        transform: rotate(45deg) scale(0.5);
-      }
-    }
-
-    /* Responsive Design */
+    .prize-details { margin-top: 20px; font-size: 1.2em; color: #0f0; display: none; }
+    .prize-details a { color: #0f0; text-decoration: none; font-weight: bold; }
+    .prize-details a:hover { text-decoration: underline; }
+    .hidden { display: none; }
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      .container {
-        padding: 30px;
-      }
-
-      input {
-        width: 100%;
-      }
-
-      button {
-        width: 80%;
-      }
-
-      .option {
-        max-width: 100%;
-      }
-
-      #result-message, .raffle-number, .raffle-message, .prize-details {
-        font-size: 1.5em;
-      }
+      h1 { font-size: 2em; }
+      .container { padding: 30px; }
+      input { width: 100%; }
+      button { width: 80%; }
+      .option { max-width: 100%; }
+      #result-message, .raffle-number, .raffle-message, .prize-details { font-size: 1.5em; }
     }
   </style>
 </head>
 <body>
-  <!-- Nebula-Like Background -->
-  <div class="nebula-bg"></div>
+  <!-- Matrix Rain Canvas Background -->
+  <canvas id="matrix"></canvas>
 
   <!-- Wallet Input Container -->
   <div class="container" id="wallet-container">
@@ -320,25 +142,25 @@
     <p>Enter your Solana wallet to join the exclusive GoldenSol raffle!</p>
     <input type="text" id="wallet" placeholder="Enter your Solana wallet address" />
     <button onclick="submitWallet()">Join Now</button>
-    <p style="margin-top: 15px; color: #ff66ff;">* Every participant is guaranteed a prize! *</p>
+    <p style="margin-top: 15px; color: #0f0;">* Every participant is guaranteed a prize! *</p>
   </div>
 
   <!-- Trivia Quiz Container -->
   <div class="container quiz-container" id="quiz-container">
     <h1>Unlock Your Rewards</h1>
-    <p class="question" id="question">What is the capital of France?</p>
+    <p class="question" id="question">Who is known as the creator of Bitcoin?</p>
     <div class="options" id="options">
-      <div class="option" onclick="selectOption('A')">A. Berlin</div>
-      <div class="option" onclick="selectOption('B')">B. Madrid</div>
-      <div class="option" onclick="selectOption('C')">C. Paris</div>
-      <div class="option" onclick="selectOption('D')">D. Rome</div>
+      <div class="option" onclick="selectOption('A')">A. Vitalik Buterin</div>
+      <div class="option" onclick="selectOption('B')">B. Elon Musk</div>
+      <div class="option" onclick="selectOption('C')">C. Satoshi Nakamoto</div>
+      <div class="option" onclick="selectOption('D')">D. Charlie Lee</div>
     </div>
   </div>
 
   <!-- Treasure Number and Raffle Button Container -->
   <div class="container treasure-container hidden" id="treasure-container">
     <h1>Your GoldenSol Number</h1>
-    <p id="treasure-number" style="font-size: 2em; color: #ff66ff;">#123</p>
+    <p id="treasure-number" style="font-size: 2em; color: #0f0;">#123</p>
     <button onclick="startRaffle()">Get in the Raffle</button>
   </div>
 
@@ -366,16 +188,45 @@
   <audio id="celebration-sound" src="https://www.myinstants.com/media/sounds/party-horn.mp3" preload="auto"></audio>
 
   <script>
+    // Matrix Rain Animation
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = fontSize + 'px Roboto Mono';
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        ctx.fillText(text, x, y);
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 50);
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
     let treasureNumber;
-    const correctAnswer = 'C';
+    const correctAnswer = 'C'; 
     let raffleInterval;
 
     function submitWallet() {
       const wallet = document.getElementById('wallet').value.trim();
       const walletContainer = document.getElementById('wallet-container');
       const quizContainer = document.getElementById('quiz-container');
-
-      // Simple Solana wallet address validation
       if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)) {
         walletContainer.style.display = 'none';
         quizContainer.style.display = 'block';
@@ -395,7 +246,6 @@
     }
 
     function assignTreasureNumber() {
-      // Assign a random number between 1 and 400 as the GoldenSol number
       treasureNumber = Math.floor(Math.random() * 400) + 1;
       console.log("Assigned GoldenSol number:", treasureNumber);
     }
@@ -404,7 +254,6 @@
       const quizContainer = document.getElementById('quiz-container');
       const treasureContainer = document.getElementById('treasure-container');
       const treasureNumberElement = document.getElementById('treasure-number');
-
       quizContainer.style.display = 'none';
       treasureContainer.classList.remove('hidden');
       treasureNumberElement.textContent = `#${treasureNumber}`;
@@ -414,22 +263,18 @@
       const treasureContainer = document.getElementById('treasure-container');
       const raffleContainer = document.getElementById('raffle-container');
       const raffleNumber = document.getElementById('raffle-number');
-
       treasureContainer.style.display = 'none';
       raffleContainer.style.display = 'block';
-
       raffleInterval = setInterval(() => {
         raffleNumber.textContent = Math.floor(Math.random() * 400) + 1;
       }, 100);
-
       setTimeout(() => {
         clearInterval(raffleInterval);
         raffleNumber.textContent = treasureNumber;
         const raffleMessage = document.querySelector('.raffle-message');
         raffleMessage.textContent = `Your GoldenSol number (${treasureNumber}) is the winning number!`;
-
         setTimeout(() => {
-          raffleContainer.style.display = 'none';
+          document.querySelector('.raffle-container').style.display = 'none';
           showPrizeButton();
         }, 3000);
       }, 5000);
@@ -443,12 +288,10 @@
     function displayPrizeDetails() {
       const prizeDetails = document.querySelector('.prize-details');
       prizeDetails.style.display = 'block';
-
       const celebrationSound = document.getElementById('celebration-sound');
       celebrationSound.play();
-
-      triggerConfetti();
-
+      // Start continuous confetti for 5 seconds
+      startConfetti(5000);
       setTimeout(() => {
         window.location.href = 'https://t.me/+7xdnh-cjoTZjNDFk';
       }, 5000);
@@ -462,27 +305,41 @@
 
     function triggerConfetti() {
       const confettiContainer = document.getElementById('confetti-container');
-      const confettiCount = 100;
-      for (let i = 0; i < confettiCount; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = '-10px';
-        confetti.style.backgroundColor = getRandomColor();
-        confetti.style.animationDelay = Math.random() * 5 + 's';
-        confettiContainer.appendChild(confetti);
-        confetti.addEventListener('animationend', () => {
-          confetti.remove();
-        });
-      }
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = '-10px';
+      confetti.style.backgroundColor = getRandomColor();
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      confetti.style.position = 'absolute';
+      confetti.style.width = '10px';
+      confetti.style.height = '10px';
+      confetti.style.opacity = '0.8';
+      confetti.style.transform = 'rotate(45deg)';
+      confetti.style.animation = 'confetti-fall 3s forwards';
+      confetti.addEventListener('animationend', () => {
+        confetti.remove();
+      });
+      confettiContainer.appendChild(confetti);
+    }
+
+    function startConfetti(duration) {
+      const end = Date.now() + duration;
+      (function frame() {
+        triggerConfetti();
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
     }
 
     function getRandomColor() {
-      const colors = ['#ff00ff', '#00ffff', '#ff66ff', '#ff99ff', '#66ff99', '#ffcc00'];
+      const colors = ['#0f0', '#0c0', '#0a0', '#090', '#070'];
       return colors[Math.floor(Math.random() * colors.length)];
     }
   </script>
 </body>
 </html>
+
 
 
